@@ -36,14 +36,14 @@ button {
     color: whitesmoke;
     border-radius: 8px;
 }
-
+/* color change when hover over button */
 button:hover {
     cursor: grab;
     background: rgb(105, 64, 105);
 }
 
 .startBtn {
-    align-items: center;
+
 }
 
 /* initials list hightlight purple */
