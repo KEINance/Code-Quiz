@@ -7,6 +7,7 @@ html {
 
 /* questions and headers large and bold */
 header {
+    align-items: center;
     font-size: large;
     font-weight: bold;
 }
@@ -15,7 +16,10 @@ header {
     font-size: large;
     font-weight: bold;
 }
-
+.topper {
+    display: flex;
+    justify-content: space-between;
+}
 /* high scores purple text */
 .high-scores {
     color: purple;
