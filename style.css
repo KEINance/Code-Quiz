@@ -1,0 +1,48 @@
+/* leave background white */
+html {
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* questions and headers large and bold */
+header {
+    font-size: large;
+    font-weight: bold;
+}
+
+.questions {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* high scores purple text */
+.high-scores {
+    color: purple;
+}
+
+/* timer purple text */
+.timer {
+    color: purple;
+}
+
+/* buttons purple, white text */
+button {
+    background: purple;
+    color: whitesmoke;
+}
+
+button:hover {
+    cursor: grab;
+    background: rgb(105, 64, 105);
+}
+
+.startBtn {
+    align-items: center;
+}
+
+/* initials list hightlight purple */
+#initials {
+    color: black;
+    background-color: purple;
+}
