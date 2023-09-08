@@ -56,26 +56,34 @@ const startBtn = document.getElementById("startBtn");
 const timer = document.getElementById("timer");
 const questionsContainer = document.getElementById("questionsContainer");
 const scoringContainer = document.getElementById("scoringContainer");
-const button = document.getElementById("button");
+const buttonInitials = document.getElementById("buttonInitials");
 const highscoresContainer = document.getElementById("highscoresContainer");
-const playerScores = json.parse(localStorage.getItem("playerScores"));
 const nxtBtn = document.getElementById("nxtBtn");
 const answerList = document.getElementById("answerList");
 const goBack = document.getElementById("goBack");
 const clearHighScores = document.getElementById("clearHighScores");
 const listHighScores = document.getElementById("listHighScores");
 const submitBtn = document.getElementById("submitBtn");
+const secRemaining = 0;
 
+
+// const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
 localStorage.setItem("playerScores", json.stringify(playerScores));
+function playerScores() {
+  localStorage.setItem("highScores", json.stringify(scores));
+}
+
 localStorage.setItem("playerInitials", json.stringify(playerInitial));
+function playerInitial() {
+  localStorage.setItem("history", json.stringify(initial));
+}
 
 //start quiz
 function beginQuiz() {
-  openingContainer.classList.add('hide');
+  openingContainer.classList.add("hide");
   questionsContainer.classList.remove("hide");
 
-  startBtn.addEventListener("click", beginQuiz);
   countDown();
   questions();
 }
@@ -83,10 +91,10 @@ function beginQuiz() {
 // countdown
 function countDown() {
   timeInterval = setInterval(function () {
-    timeRemaining--;
-    timer.textContent = timeRemaining + "remaining until quiz ends!";
+    timeLeft--;
+    timer.innerHTML = timeLeft + "remaining until quiz ends!";
 
-    if (timeRemaining === 0) {
+    if (timeLeft === 0) {
       clearInterval(timeInterval);
       playerScores();
     }
@@ -110,7 +118,7 @@ function questions() {
   }
   button.addEventListener("click", rightWrong);
   answerList.appendChild(button);
-};
+}
 
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
@@ -120,12 +128,12 @@ function rightWrong() {
   if (right) {
     answerChoice.innerHTML = "CORRECT!";
   } else {
-    // wrong answers decreae time by 5 seconds
+    // wrong answers decreae time by 10 seconds
     answerChoice.innerHTML = "INCORRECT~";
-    if (timeRemaining <= 5) {
+    if (timeRemaining <= 10) {
       timeRemaining = 0;
     } else {
-      timeRemaining -= 5;
+      timeRemaining -= 10;
     }
   }
 }
