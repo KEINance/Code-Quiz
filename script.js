@@ -1,16 +1,17 @@
 const timeLeft = 75;
-const openingContainer = document.getElementById('opening-container');
+const openingContainer = document.getElementById('openingContainer');
 const startBtn = document.getElementById('startBtn');
 const timer = document.getElementById('timer');
-const questionsContainer = document.getElementById('questions-container');
-const scoringContainer = document.getElementById('scoring-container');
+const questionsContainer = document.getElementById('questionsContainer');
+const scoringContainer = document.getElementById('scoringContainer');
 const button = document.getElementById('button');
-const highscoresContainer = document.getElementById('highscores-container');
+const highscoresContainer = document.getElementById('highscoresContainer');
 const playerScores = json.parse(localStorage.getItem('playerScores'));
 const nxtBtn = document.getElementById('nxtBtn');
-const answerList = document.getElementById('answer-list')
+const answerList = document.getElementById('answerList')
 const goBack = document.getElementById('goBack');
 const clearHighScores = document.getElementById('clearHighScores');
+const listHighScores = document.getElementById('listHighScores');
 
 // code questions and answers
 const questionList [
@@ -57,6 +58,8 @@ const questionList [
 ];
 // localstorage 
 localStorage.setItem('playerScores', json.stringify(playerScores));
+
+
 //start quiz
 function beginQuiz() {
     timer = setInterval(countDown, 1000);
@@ -66,7 +69,17 @@ function beginQuiz() {
     countDown();
     nextQuestion();
 
-}
+};
+
+
+//start quiz
+startBtn.addEventListener('click', startQuiz);
+nxtBtn.addEventListener('click', function() {
+    
+    nextQuestionSelection();
+})
+
+
 // countdown
 function countDown() {
   
@@ -79,14 +92,18 @@ function countDown() {
         playerScores();
     }
 }, 1000)
-}
+};
+
 // penalty counter
 function penalty(time) {
     secRemaining -= time;
     if(secRemaining < 0) {
         secRemaining = 0;
     }
-}
+};
+
+
+
 //show questions
 function questions() {
     if ( questionList = questions.length) {
@@ -97,6 +114,8 @@ function questions() {
     button.addEventListener('click', rightWrong);
     answerList.appendChild(button);
 }
+
+
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
     const answerChoice = e.target;
@@ -114,6 +133,8 @@ function rightWrong() {
         }
     }
 };
+
+
 //show next question
 function nextQuestionSelection(questions) {
     resetQuestion();
@@ -122,17 +143,31 @@ function nextQuestionSelection(questions) {
 
 
 
-
-
-
 //clear answered question
-function resetQuestion(){
+function resetQuestion() {
     nxtBtn.classList.add('hide');
     while (answerList.firstChild) {
         answerList.removeChild(answerList.firstChild);
     }
-}
-// show highscores
+};
+
+
+// highscores and show highscores
+// const highScores() {
+//     const highScore = localStorage.getItem('score');
+//     const scoreData = json.parse(highScore);
+//     const scorebyInitial =  scoreData.initial;
+//     const playerScore = scoreData.score;
+
+//     scores.innerHTML = '';
+//     scores.innerHTML = scorebyInitial + playerScore;
+// };
+
+// function ShowHighScores() {
+//     const highScores = json.parse(localStorage.getItem('highscores'));
+//     const listOfHighScores = listHighScores.setAttribute('')
+// };
+
 
 //clear screen
 

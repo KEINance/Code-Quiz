@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" href="./style.css">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     <!-- Bootstrap CSS -->
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 <body>
 <!-- intro title and text and start button -->
-<section id="opening-container">
+<section id="openingContainer">
     <div class="top-items">
         <p class="timer-counter">Time:<span id="timer">75</span></p>
         <p class="high-scores">HighScores</p>
@@ -29,12 +33,12 @@
 
 
 
-<section id="questions-container" class="hide">
+<section id="questionsContainer" class="hide">
     <!-- question and answer portion -->
     <header style="text-align: justify;"><h1 class="header-name">Code Quiz Challenge</h1></header>
     <div class="questionsChoices" style="text-align: center;"> 
         <!-- answer list, centered -->
-        <div id="answer-list" style="text-align: center;">
+        <div id="answerList" style="text-align: center;">
             <button class="btn">Selection 1</button>
             <button class="btn">Selection 2</button>
             <button class="btn">Selection 3</button>
@@ -51,7 +55,7 @@
 
 
 
-<section id="scoring-container" class="hide">
+<section id="scoringContainer" class="hide">
     <!-- done page input initials and submit button -->
     <div class="completed">
         <button class="submitBtn">Submit</button>
@@ -63,18 +67,16 @@
 
 
 
-<section id="highscores-container" class="hide">
+<section id="highscoresContainer" class="hide">
     <!--shows highscores also go back and clear highscores buttons -->
+    <div id="listHighScores">
+
+    </div>
     <div>
         <button id="goBack">Go Back</button>
         <button id="clearHighscores">Clear HighScores</button>
     </div>
 </section>
-
-
-
-
-
 
 <script scr="./script.js"></script>
 </body>
