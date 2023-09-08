@@ -12,22 +12,36 @@ header {
     font-weight: bold;
 }
 
-.questions {
-    font-size: large;
-    font-weight: bold;
-}
-.topper {
-    display: flex;
-    justify-content: space-between;
-}
-/* high scores purple text */
-.high-scores {
+.starterPrompt {
     color: purple;
 }
 
-/* timer purple text */
-.timer {
+.header-name {
     color: purple;
+}
+
+.top-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* top timer */
+.timer-counter {
+    color: purple;
+    text-align: left;
+}
+
+/* high scores purple text */
+.high-scores {
+    text-align: center;
+    color: purple;
+    text-align: right;
+}
+#questions-container {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
 }
 
 /* buttons purple, white text */
@@ -40,10 +54,6 @@ button {
 button:hover {
     cursor: grab;
     background: rgb(105, 64, 105);
-}
-
-.startBtn {
-
 }
 
 /* initials list hightlight purple */

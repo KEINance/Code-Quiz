@@ -8,37 +8,54 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- make simple layout for quiz properties -->
-    <!-- timer, top right -->
-<div class="topper">
-    <p class="timerCounter">Time:</p>
-    <!-- high score list, top left -->
-    <p class="high-scores">HighScores</p>
-</div>
- <!-- header -->
- <header style="text-align: justify;"><h1>Code Quiz Challenge</h1></header>
-    <!-- question statement, centered -->
-<div class="questions" style="text-align: center;"> 
+<!-- intro title and text and start button -->
+<section id="opening-container">
+    <div class="top-items">
+        <p class="timer-counter">Time:<span id="timer">75</span></p>
+        <p class="high-scores">HighScores</p>
+    </div>
+    <div class="starterPrompt">
+        <h1 class="welcomeTitle">Welcome to the JavaScript Code Quiz Challenge</h1>
+        <p>Try to answer the following code-related questions 
+            within the time limit. Keep in mind that incorrect answers will penalize 
+            your scoretime by ten seconds</p>
+    </div>
+    <div id="startBtn">
+    <!-- button click launches questions -->
+            <button>START QUIZ!</button>
+    </div>
+</section>
 
-</div>
-    <!-- answer list, centered -->
-<div class="answer-list" style="text-align: center;">
+<section id="questions-container">
+    <!-- question and answer portion -->
+    <header style="text-align: justify;"><h1 class="header-name">Code Quiz Challenge</h1></header>
+    <div class="questionsChoices" style="text-align: center;"> 
+        <!-- answer list, centered -->
+        <!-- <div class="answer-list" style="text-align: center;">
+            <button class="btn">Selection 1</button>
+            <button class="btn">Selection 2</button>
+            <button class="btn">Selection 3</button>
+            <button class="btn">Selection 4</button>
+        </div> -->
+    </div>
+</section>
 
-</div>
-    <!-- start quiz button -->
-<div>
-        <button class="startBtn">START QUIZ!</button>
-</div>
-
+<section id="scoring-container">
     <!-- done page input initials and submit button -->
-<div class="completed">
+    <div class="completed">
         <button class="submitBtn">Submit</button>
         Enter Initials: <input type="text" id="button"></input>
-</div>
-    <!-- takes to high scores for viewing, go back and clear highscores buttons -->
-<div>
-    <button class="goBack">Go Back</button>
-    <button class="clearHighscores">Clear HighScores</button>
-</div>
+    </div>
+</section>
+
+<section id="highscores-container">
+    <!--shows highscores also go back and clear highscores buttons -->
+    <div>
+        <button class="goBack">Go Back</button>
+        <button class="clearHighscores">Clear HighScores</button>
+    </div>
+</section>
+
+<script scr="./script.js"></script>
 </body>
 </html>
