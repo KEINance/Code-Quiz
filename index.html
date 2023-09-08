@@ -26,12 +26,15 @@
     </div>
 </section>
 
-<section id="questions-container">
+
+
+
+<section id="questions-container" class="hide">
     <!-- question and answer portion -->
     <header style="text-align: justify;"><h1 class="header-name">Code Quiz Challenge</h1></header>
     <div class="questionsChoices" style="text-align: center;"> 
         <!-- answer list, centered -->
-        <div class="answer-list" style="text-align: center;">
+        <div id="answer-list" style="text-align: center;">
             <button class="btn">Selection 1</button>
             <button class="btn">Selection 2</button>
             <button class="btn">Selection 3</button>
@@ -44,7 +47,11 @@
     </div>
 </section>
 
-<section id="scoring-container">
+
+
+
+
+<section id="scoring-container" class="hide">
     <!-- done page input initials and submit button -->
     <div class="completed">
         <button class="submitBtn">Submit</button>
@@ -52,13 +59,22 @@
     </div>
 </section>
 
-<section id="highscores-container">
+
+
+
+
+<section id="highscores-container" class="hide">
     <!--shows highscores also go back and clear highscores buttons -->
     <div>
-        <button class="goBack">Go Back</button>
-        <button class="clearHighscores">Clear HighScores</button>
+        <button id="goBack">Go Back</button>
+        <button id="clearHighscores">Clear HighScores</button>
     </div>
 </section>
+
+
+
+
+
 
 <script scr="./script.js"></script>
 </body>

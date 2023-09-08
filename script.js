@@ -8,6 +8,10 @@ const button = document.getElementById('button');
 const highscoresContainer = document.getElementById('highscores-container');
 const playerScores = json.parse(localStorage.getItem('playerScores'));
 const nxtBtn = document.getElementById('nxtBtn');
+const answerList = document.getElementById('answer-list')
+const goBack = document.getElementById('goBack');
+const clearHighScores = document.getElementById('clearHighScores');
+
 // code questions and answers
 const questionList [
     {
@@ -54,7 +58,15 @@ const questionList [
 // localstorage 
 localStorage.setItem('playerScores', json.stringify(playerScores));
 //start quiz
+function beginQuiz() {
+    timer = setInterval(countDown, 1000);
+    openingContainer.classList.add('hide');
+    questionsContainer.classList.remove('hide');
 
+    countDown();
+    nextQuestion();
+
+}
 // countdown
 function countDown() {
   
@@ -81,7 +93,9 @@ function questions() {
         clearInterval(timeInterval)
         playerScores();
         return;
-    }
+    };
+    button.addEventListener('click', rightWrong);
+    answerList.appendChild(button);
 }
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
@@ -98,6 +112,24 @@ function rightWrong() {
         } else {
             timeRemaining -= 5;
         }
+    }
+};
+//show next question
+function nextQuestionSelection(questions) {
+    resetQuestion();
+    questions();
+};
+
+
+
+
+
+
+//clear answered question
+function resetQuestion(){
+    nxtBtn.classList.add('hide');
+    while (answerList.firstChild) {
+        answerList.removeChild(answerList.firstChild);
     }
 }
 // show highscores
