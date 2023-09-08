@@ -14,7 +14,7 @@ const clearHighScores = document.getElementById('clearHighScores');
 const listHighScores = document.getElementById('listHighScores');
 
 // code questions and answers
-const questionList [
+const questionList = [
     {
         question: "Commonly used data types DO NOT include:",
         choices: [
