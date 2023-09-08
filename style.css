@@ -13,6 +13,7 @@ header {
 }
 
 .starterPrompt {
+    text-align: center;
     color: purple;
 }
 
@@ -38,18 +39,42 @@ header {
     color: purple;
     text-align: right;
 }
-#questions-container {
+
+/* #openingContainer {
+    display: none;
+} */
+
+#scoringContainer {
+    display: none;
+}
+
+#questionsContainer {
+    display: none;
     text-align: center;
     font-size: large;
     font-weight: bold;
 }
 
+.startBtn {
+    text-align: center;
+}
+
 /* buttons purple, white text */
 button {
+    text-align: center;
     background: purple;
     color: whitesmoke;
     border-radius: 8px;
 }
+
+.btnHide {
+    display: none;
+    background: purple;
+    color: whitesmoke;
+    border-radius: 8px;
+}
+
+
 /* color change when hover over button */
 button:hover {
     cursor: grab;
@@ -58,6 +83,7 @@ button:hover {
 
 /* initials list hightlight purple */
 #initials {
+    display: none;
     color: black;
     background-color: purple;
 }

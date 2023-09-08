@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" href="./style.css">
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-     <!-- Bootstrap CSS -->
+   <!-- Bootstrap CSS -->
      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 <body>
 <!-- intro title and text and start button -->
 <section id="openingContainer">
     <div class="top-items">
-        <p class="timer-counter">Time:<span id="timer">75</span></p>
-        <p class="high-scores">HighScores</p>
+        <a class="timer-counter">Time:<span id="timer">75</span></a>
+        <a role="button" class="high-scores">HighScores</a>
     </div>
     <div class="starterPrompt">
         <h1 class="welcomeTitle">Welcome to the JavaScript Code Quiz Challenge</h1>
@@ -24,9 +22,9 @@
             within the time limit. Keep in mind that incorrect answers will penalize 
             your scoretime by ten seconds</p>
     </div>
-    <div id="startBtn">
+    <div id="startBtn" class="startBtn">
     <!-- button click launches questions -->
-            <button>START QUIZ!</button>
+            <button class="startBtn">START QUIZ!</button>
     </div>
 </section>
 
@@ -39,14 +37,14 @@
     <div class="questionsChoices" style="text-align: center;"> 
         <!-- answer list, centered -->
         <div id="answerList" style="text-align: center;">
-            <button class="btn">Selection 1</button>
-            <button class="btn">Selection 2</button>
-            <button class="btn">Selection 3</button>
-            <button class="btn">Selection 4</button>
+            <button class="btnHide">Selection 1</button>
+            <button class="btnHide">Selection 2</button>
+            <button class="btnHide">Selection 3</button>
+            <button class="btnHide">Selection 4</button>
         </div>
         <h3 id="answerChoice"></h3>
         <div class="controls">
-            <button id="nxtBtn" class="nxt-btn hide">NEXT</button>
+            <button id="nxtBtn" class="btnHide">NEXT</button>
         </div>
     </div>
 </section>
@@ -58,8 +56,8 @@
 <section id="scoringContainer" class="hide">
     <!-- done page input initials and submit button -->
     <div class="completed">
-        <button class="submitBtn">Submit</button>
         Enter Initials: <input type="text" id="button"></input>
+        <button id="submitBtn" class="btnHide">Submit</button>
     </div>
 </section>
 
@@ -70,11 +68,11 @@
 <section id="highscoresContainer" class="hide">
     <!--shows highscores also go back and clear highscores buttons -->
     <div id="listHighScores">
-
+            <!-- high scores go here -->
     </div>
     <div>
-        <button id="goBack">Go Back</button>
-        <button id="clearHighscores">Clear HighScores</button>
+        <button id="goBack" class="btnHide">Go Back</button>
+        <button id="clearHighscores" class="btnHide">Clear HighScores</button>
     </div>
 </section>
 
