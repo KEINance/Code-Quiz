@@ -66,30 +66,29 @@ var listHighScores = document.getElementById("listHighScores");
 const submitBtn = document.getElementById("submitBtn");
 var secRemaining = 0;
 
-
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
 
 function playerScores() {
   localStorage.setItem("highScores", JSON.stringify(playerScores));
-};
+}
 function playerInitial() {
   localStorage.setItem("history", JSON.stringify(playerInitial));
 }
 
 //start quiz
 function beginQuiz() {
-    // console.log('start')
+  // console.log('start')
   openingContainer.classList.add("hide");
   questionsContainer.classList.remove("hide");
 
-  questions();
   countDown();
+  rightWrong();
 }
 
 // countdown
 function countDown() {
-    // console.log('start2')
+  // console.log('start2')
   timeInterval = setInterval(function () {
     timeLeft--;
     timer.innerHTML = timeLeft + "remaining until quiz ends!";
@@ -103,75 +102,107 @@ function countDown() {
 
 // penalty counter
 function penalty(time) {
-    // console.log('start3')
+  // console.log('start3')
   secRemaining -= time;
   if (secRemaining < 0) {
     secRemaining = 0;
   }
 }
 
-//show questions
-function questions() {
-    console.log('start4')
-    questionsContainer.classList.remove("hide");
-    // var questions = 0;
+//show right answer 'correct' or 'wrong' statement
+function rightWrong() {
+  console.log("start5");
+  questionsContainer.classList.remove("hide");
+  // var questions = 0;
+  for (var i = 0; i < questionList; i++) {
+    var random = Math.floor(Math.random() * quiz.length);
+    var randomQuestion =
+      questionList[random].enabled == false || questionList[random].asked == 1;
 
-    for (var i = 0; i < questionList; i++) {
-        var random = Math.floor(Math.random() * quiz.length);
-        const randomQuestion = (questionList[random].enabled == false || questionList[random].asked == 1);
-
-        // Ask question
-        var question = questionList[randomQuestion];
-        document.getElementById("answerList").innerHTML += "<p>" + question + "</p>";
-    }
-
-  if ((questionList === questions.length.answerList)) {
+    // Ask question
+    var question = questionList[randomQuestion];
+    document.getElementById("answerList").innerHTML +=
+      "<p>" + question + "</p>";
+  }
+  if (question === answerList.length) {
     clearInterval(timeInterval);
     playerScores();
     return;
   }
-  nxtBtn.addEventListener("click", rightWrong);
-  answerList.appendChild(nxtBtn);
-}
-
-//show right answer 'correct' or 'wrong' statement
-function rightWrong() {
-    console.log('start5')
-  const answerChoice = e.target;
-  const right = answerChoice.dataset.correct;
+  
+  const answerChoice = answerList.length;
+  const right = answerChoice.true;
   answerChoice.classList.remove("hide");
   if (right) {
-    answerChoice.innerHTML = "CORRECT!";
-  } else {
-    // wrong answers decreae time by 10 seconds
-    answerChoice.innerHTML = "INCORRECT~";
-    if (timeLeft <= 10) {
-      timeLeft = 0;
+      answerChoice.innerHTML = "CORRECT!";
     } else {
-      timeLeft -= 10;
+        // wrong answers decreae time by 10 seconds
+        answerChoice.innerHTML = "INCORRECT~";
+        if (timeLeft <= 10) {
+            timeLeft = 0;
+        } else {
+            timeLeft -= 10;
+        }
     }
-  }
+    nxtBtn.addEventListener("click", rightWrong);
+    answerList.appendChild(nxtBtn);
 }
 
 //show next question
-function nextQuestionSelection(questions) {
-    console.log('start6')
-  resetQuestion();
-  questions();
-}
-
-//clear answered question
-function resetQuestion() {
-    console.log('start6')
-  nxtBtn.classList.add("hide");
-  while (answerList.firstChild) {
-    answerList.removeChild(answerList.firstChild);
+function nextQuestionSelection(rightWrong) {
+    console.log("start6");
+    resetQuestion();
+    rightWrong();
   }
-}
+  
+  //clear answered question
+  function resetQuestion() {
+    console.log("start6");
+    nxtBtn.classList.add("hide");
+    while (answerList.firstChild) {
+      answerList.removeChild(answerList.appendChild);
+    }
+  }
+  
 
-function saveScore() {
+// was question chooser now beeen added to the rightWrong()
 
-}
+// //show questions
+// function questions() {
+//   console.log("start4");
+//   questionsContainer.classList.remove("hide");
+//   // var questions = 0;
+//   for (var i = 0; i < questionList; i++) {
+//     var random = Math.floor(Math.random() * quiz.length);
+//     var randomQuestion =
+//       questionList[random].enabled == false || questionList[random].asked == 1;
+
+//     // Ask question
+//     var question = questionList[randomQuestion];
+//     document.getElementById("answerList").innerHTML +=
+//       "<p>" + question + "</p>";
+//   }
+//   if (questionList === questions.length.answerList) {
+//     clearInterval(timeInterval);
+//     playerScores();
+//     return;
+//   }
+//   nxtBtn.addEventListener("click", rightWrong);
+//   answerList.appendChild(nxtBtn);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+function saveScore() {}
 
 // highscores and show highscores
 // on event click to hide and unhide for showing schores
@@ -199,7 +230,7 @@ function saveScore() {
 
 //start button, highscores, add score
 nxtBtn.addEventListener("click", function () {
-    console.log('nextbtn')
+  console.log("nextbtn");
   nextQuestionSelection();
 });
 startBtn.addEventListener("click", beginQuiz);

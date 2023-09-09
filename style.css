@@ -76,7 +76,7 @@ button {
 }
 
 .btnHide {
-    display: none;
+    /* display: none; */
     background: purple;
     color: whitesmoke;
     border-radius: 8px;
@@ -91,7 +91,7 @@ button:hover {
 
 /* initials list hightlight purple */
 #initials {
-    display: none;
+    /* display: none; */
     color: black;
     background-color: purple;
 }
