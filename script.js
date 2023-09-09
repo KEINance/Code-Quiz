@@ -131,14 +131,11 @@ function resetQuestion() {
   for (let i = 0; i < questionList[currentQuestion].choices.length; i++) {
     //new element document.createElement attach txt through tageting  
     //choices arr attached to current question
-    let newQuestion = document.createElement('div');
-    newQuestion.textContent = questionList[currentQuestion].question[i].text;
     let newLine = document.createElement('button');
     newLine.textContent = questionList[currentQuestion].choices[0].text;
     // then append created element to container
     //loop that question choices array and append each one to a
     //new line w/in cleared container
-    document.getElementById('answerList').appendChild(newQuestion);
     document.getElementById('answerList').appendChild(newLine);
   }
 
