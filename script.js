@@ -67,6 +67,8 @@ const submitBtn = document.getElementById("submitBtn");
 var secRemaining = 0;
 var currentQuestion = 0;
 var submitAnswerBtn = document.getElementById('submitAnswerBtn')
+
+
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
 
@@ -117,20 +119,28 @@ function resetQuestion() {
   submitAnswerBtn.classList.remove("hide");
   document.querySelector("#answerList").innerHTML = '';
 
-  for (let i = 0; i < questionList[currentQuestion].choices; i++) {
+  for (let i = 0; i < questionList[currentQuestion].choices.length; i++) {
     //new element document.createElement attach txt through tageting  
     //choices arr attached to current question
-    let newLine = document.createElement('div');
-    newLine.textContent = questionList[currentQuestion].choices[i];
+    let newQuestion = document.createElement('div');
+    newQuestion.textContent = questionList[currentQuestion].question[0].text;
+    let newLine = document.createElement('button');
+    newLine.textContent = questionList[currentQuestion].choices[0].text;
     // then append created element to container
     //loop that question choices array and append each one to a
     //new line w/in cleared container
+    document.getElementById('answerList').appendChild(newQuestion);
     document.getElementById('answerList').appendChild(newLine);
   }
 
   //submit button will show rightWrong()
   submitAnswerBtn.addEventListener("click", rightWrong);
 }
+
+
+
+
+
 
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
@@ -140,13 +150,14 @@ function rightWrong() {
   nxtBtn.classList.remove("hide");
 
 
-  const answerChoice = answerList.length;
-  const right = answerChoice;
+  const answerChoice = questionList.choices;
+  const correct = answerChoice;
+  
   // // var questionArr = questionList.splice[0];
   // var listOfQuestions = (document.createElement('answerList'));
   // document.body.appendChild(listOfQuestions).JSON;
 
-  if (right) {
+  if (correct == true) {
     innerHTML = "CORRECT!";
   } else {
     // wrong answers decreae time by 10 seconds
