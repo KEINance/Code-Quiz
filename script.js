@@ -50,21 +50,21 @@ const questionList = [
   },
 ];
 
-const timeLeft = 75;
+var timeLeft = 75;
 const openingContainer = document.getElementById("openingContainer");
 const startBtn = document.getElementById("startBtn");
-const timer = document.getElementById("timer");
+var timer = document.getElementById("timer");
 const questionsContainer = document.getElementById("questionsContainer");
 const scoringContainer = document.getElementById("scoringContainer");
-const buttonInitials = document.getElementById("buttonInitials");
+var buttonInitials = document.getElementById("buttonInitials");
 const highscoresContainer = document.getElementById("highscoresContainer");
 const nxtBtn = document.getElementById("nxtBtn");
 const answerList = document.getElementById("answerList");
 const goBack = document.getElementById("goBack");
 const clearHighScores = document.getElementById("clearHighScores");
-const listHighScores = document.getElementById("listHighScores");
+var listHighScores = document.getElementById("listHighScores");
 const submitBtn = document.getElementById("submitBtn");
-const secRemaining = 0;
+var secRemaining = 0;
 
 
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
@@ -79,7 +79,7 @@ function playerInitial() {
 
 //start quiz
 function beginQuiz() {
-    console.log('start')
+    // console.log('start')
   openingContainer.classList.add("hide");
   questionsContainer.classList.remove("hide");
 
@@ -89,7 +89,7 @@ function beginQuiz() {
 
 // countdown
 function countDown() {
-    console.log('start2')
+    // console.log('start2')
   timeInterval = setInterval(function () {
     timeLeft--;
     timer.innerHTML = timeLeft + "remaining until quiz ends!";
@@ -103,7 +103,7 @@ function countDown() {
 
 // penalty counter
 function penalty(time) {
-    console.log('start3')
+    // console.log('start3')
   secRemaining -= time;
   if (secRemaining < 0) {
     secRemaining = 0;
@@ -114,14 +114,24 @@ function penalty(time) {
 function questions() {
     console.log('start4')
     questionsContainer.classList.remove("hide");
+    // var questions = 0;
 
-  if ((questionList = questions.length.answerList)) {
+    for (var i = 0; i < questionList; i++) {
+        var random = Math.floor(Math.random() * quiz.length);
+        const randomQuestion = (questionList[random].enabled == false || questionList[random].asked == 1);
+
+        // Ask question
+        var question = questionList[randomQuestion];
+        document.getElementById("answerList").innerHTML += "<p>" + question + "</p>";
+    }
+
+  if ((questionList === questions.length.answerList)) {
     clearInterval(timeInterval);
     playerScores();
     return;
   }
-  button.addEventListener("click", rightWrong);
-  answerList.appendChild(button);
+  nxtBtn.addEventListener("click", rightWrong);
+  answerList.appendChild(nxtBtn);
 }
 
 //show right answer 'correct' or 'wrong' statement
