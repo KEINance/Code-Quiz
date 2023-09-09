@@ -136,10 +136,12 @@ function resetQuestion() {
 function rightWrong() {
   console.log("start5");
   questionsContainer.classList.remove("hide");
+  answerList.classList.remove("hide");
+  nxtBtn.classList.remove("hide");
+
 
   const answerChoice = answerList.length;
   const right = answerChoice;
-  // answerList.classList.remove("hide");
   // // var questionArr = questionList.splice[0];
   // var listOfQuestions = (document.createElement('answerList'));
   // document.body.appendChild(listOfQuestions).JSON;
@@ -155,15 +157,12 @@ function rightWrong() {
       timeLeft -= 10;
     }
     answerList.appendChild(nxtBtn);
-    nxtBtn.addEventListener("click", rightWrong);
+    nxtBtn.addEventListener("click", resetQuestion);
   }
   if (questionList === answerList.length) {
     clearInterval(timeInterval);
     playerScores();
   }
-
-  //coming from reset will then trigger resetQuestion()
-  resetQuestion();
 }
 
 //show next question
