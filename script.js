@@ -129,10 +129,10 @@ function rightWrong() {
     
 
     if (right) {
-        questionList.answerChoice.innerHTML = "CORRECT!";
+        innerHTML = "CORRECT!";
     } else {
         // wrong answers decreae time by 10 seconds
-        questionList.answerChoice.innerHTML = "INCORRECT~";
+        innerHTML = "INCORRECT~";
         if (timeLeft <= 10) {
             timeLeft = 0;
         } else {
@@ -145,20 +145,7 @@ function rightWrong() {
       clearInterval(timeInterval);
       playerScores();
     }
-    // resetQuestion();
-    // nextQuestionSelection();
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //show next question
 function nextQuestionSelection(rightWrong) {
