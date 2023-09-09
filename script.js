@@ -59,8 +59,9 @@ const scoringContainer = document.getElementById("scoringContainer");
 var buttonInitials = document.getElementById("buttonInitials");
 const highscoresContainer = document.getElementById("highscoresContainer");
 const nxtBtn = document.getElementById("nxtBtn");
-const answerList = document.getElementById("answerList");
 const goBack = document.getElementById("goBack");
+const answerList = document.getElementById("answerList");
+const scoresBtns = document.getElementById("scoresBtns");
 const clearHighScores = document.getElementById("clearHighScores");
 var listHighScores = document.getElementById("listHighScores"); //list items from local
 const showScores = document.getElementById("showScores"); // shows highscores onclickbtn to move to next page
@@ -180,16 +181,9 @@ function saveScore() {
   answerList.classList.add("hide");
   nxtBtn.classList.add("hide");
   submitBtn.classList.remove("hide");
+
   //have submit button -- takes to show highscores
   submitBtn.addEventListener("click", showHighScores);
-}
-
-// localstorage
-function playerScores() {
-  localStorage.setItem("highScores", JSON.stringify(playerScores));
-}
-function playerInitial() {
-  localStorage.setItem("history", JSON.stringify(playerInitial));
 }
 
 //show highscores and initials have go back button
@@ -197,32 +191,28 @@ function showHighScores() {
   var initialsSaved = document.getElementById("buttonInitials");
   localStorage.setItem("initials", initialsSaved.value);
 
-  var timeSaved = document.getElementById('timer')
+  var timeSaved = document.getElementById("timer");
+  localStorage.setItem("timer", timeSaved.value);
 
   scoringContainer.classList.add("hide");
   highscoresContainer.classList.remove("hide");
   listHighScores.classList.remove("hide");
-  goBack.classList.remove("hide");
-  clearHighScores.classList.remove("hide");
-  showScores.classList.remove("hide");
-  //enter initials
+  scoresBtns.classList.remove("hide");
 
+  //clear HTML
   scoringContainer.innerHTML = "";
+  //get scores from localStorage
+  const playerInitial = JSON.parse(localStorage.getItem("initials"));
+  const playerTime = JSON.parse(localStorage.getItem("timer"));
 
-  const initials = localStorage.getItem(playerInitial);
-  const playerInitial = json.parse(localStorage.getItem("playerInitial"));
-
-  var userInitials = JSON.parse(localStorage.getItem("initals"));
   listScores = document.getElementById("listHighScores");
+  scores.innerHTML = playerInitial + playerTime;
   for (i = 0; i < 100; i++) {
-    list[i].innerHTML = `<li>${userInitials}</li>`;
+    list[i].innerHTML = `<li>${scores}</li>`;
   }
+  goBack.addEventListener("click", beginQuiz);
+  clearHighScores.addEventListener("click", beginQuiz);
 }
-
-//   const scorebyInitial = initials;
-//   const playerScore = scoreData;
-
-//   scores.innerHTML = scorebyInitial + playerScore;
 
 startBtn.addEventListener("click", beginQuiz);
 // goBack.addEventListener("click", beginQuiz);
