@@ -66,11 +66,15 @@ var listHighScores = document.getElementById("listHighScores");
 const submitBtn = document.getElementById("submitBtn");
 var secRemaining = 0;
 var currentQuestion = 0;
-var submitAnswerBtn = document.getElementById('submitAnswerBtn')
-
+var submitAnswerBtn = document.getElementById("submitAnswerBtn");
+var selectedChoice = null;
 
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
+
+function selectedAnswer(choiceIndex) {
+    selectedChoice = choiceIndex
+}
 
 function playerScores() {
   localStorage.setItem("highScores", JSON.stringify(playerScores));
@@ -114,113 +118,82 @@ function penalty(time) {
 
 //clear answered question
 function resetQuestion() {
-  console.log("start7");
-  nxtBtn.classList.add("hide");
-  submitAnswerBtn.classList.remove("hide");
-  document.querySelector("#answerList").innerHTML = '';
-
-
-  for (let i = 0; i < questionList[currentQuestion].question.length; i++) {
-    let newQuestion = document.createElement('div');
-    newQuestion.textContent = questionList[currentQuestion].question[i].text;
-
-    document.getElementById('answerList').appendChild(newQuestion);
+    console.log("show question and answer");
+    nxtBtn.classList.add("hide");
+    submitAnswerBtn.classList.remove("hide");
+    document.querySelector("#answerList").innerHTML = "";
     
+    for (let i = 0; i < questionList[currentQuestion].length; i++) {
+        let newQuestion = document.createElement("div");
+        newQuestion.textContent = questionList[currentQuestion].question[i].text;
+        // currentQuestion++;
+
+    document.getElementById("answerList").appendChild(newQuestion);
   }
 
   for (let i = 0; i < questionList[currentQuestion].choices.length; i++) {
-    //new element document.createElement attach txt through tageting  
+    //new element document.createElement attach txt through tageting
     //choices arr attached to current question
-    let newLine = document.createElement('button');
-    newLine.textContent = questionList[currentQuestion].choices[0].text;
+    let newLine = document.createElement("button");
+    newLine.textContent = questionList[currentQuestion].choices[i].text;
+    
     // then append created element to container
     //loop that question choices array and append each one to a
     //new line w/in cleared container
-    document.getElementById('answerList').appendChild(newLine);
+    newLine.addEventListener('click', function() {
+        selectedAnswer(i);
+    })
+
+    document.getElementById("answerList").appendChild(newLine);
   }
 
   //submit button will show rightWrong()
   submitAnswerBtn.addEventListener("click", rightWrong);
 }
 
-
-
-
-
-
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
-  console.log("start5");
+  console.log(" right / wrong");
   questionsContainer.classList.remove("hide");
   answerList.classList.remove("hide");
   nxtBtn.classList.remove("hide");
+  submitAnswerBtn.classList.add("hide");
 
-
-  const answerChoice = questionList.choices;
-  const correct = answerChoice;
-  
-  // // var questionArr = questionList.splice[0];
-  // var listOfQuestions = (document.createElement('answerList'));
-  // document.body.appendChild(listOfQuestions).JSON;
-
-  if (correct == true) {
-    innerHTML = "CORRECT!";
+  if (questionList[currentQuestion].choices[selectedChoice].correct === true) {
+    document.querySelector("#answerList").innerHTML = "Correct!";
   } else {
     // wrong answers decreae time by 10 seconds
-    innerHTML = "INCORRECT~";
+    document.querySelector("#answerList").innerHTML = "Incorrect!";
     if (timeLeft <= 10) {
       timeLeft = 0;
     } else {
       timeLeft -= 10;
     }
-    answerList.appendChild(nxtBtn);
-    nxtBtn.addEventListener("click", resetQuestion);
-  }
-  if (questionList === answerList.length) {
+}
+    currentQuestion++;
+
+if (currentQuestion === questionList.length) {
     clearInterval(timeInterval);
-    playerScores();
-  }
+    saveScore();
+}
+answerList.appendChild(nxtBtn);
+nxtBtn.addEventListener("click", resetQuestion);
 }
 
-//show next question
-// function nextQuestionSelection(rightWrong) {
-//     console.log("start6");
-//     resetQuestion();
-//     rightWrong();
-//   }
+function saveScore() {
+  console.log("save score");
 
-// was question chooser now beeen added to the rightWrong()
 
-// //show questions
-// function questions() {
-//   console.log("start4");
-//   questionsContainer.classList.remove("hide");
-//   // var questions = 0;
-//   for (var i = 0; i < questionList; i++) {
-//     var random = Math.floor(Math.random() * quiz.length);
-//     var randomQuestion =
-//       questionList[random].enabled == false || questionList[random].asked == 1;
 
-//     // Ask question
-//     var question = questionList[randomQuestion];
-//     document.getElementById("answerList").innerHTML +=
-//       "<p>" + question + "</p>";
-//   }
-//   if (questionList === questions.length.answerList) {
-//     clearInterval(timeInterval);
-//     playerScores();
-//     return;
-//   }
-//   nxtBtn.addEventListener("click", rightWrong);
-//   answerList.appendChild(nxtBtn);
-// }
 
-function saveScore() {}
+  
+}
 
 // highscores and show highscores
 // on event click to hide and unhide for showing schores
 
 // const highScores() {
+//console.log('show high scores')
 //     const highScore = localStorage.getItem('score');
 //     const scoreData = json.parse(highScore);
 //     const scorebyInitial =  scoreData.initial;
@@ -235,17 +208,12 @@ function saveScore() {}
 // };
 
 // function ShowHighScores() {
+
 //     const highScores = json.parse(localStorage.getItem('highscores'));
 //     const listOfHighScores = listHighScores.setAttribute('')
 // }
 
 //clear screen
-
-
-
-
-
-
 
 //start button, highscores, add score
 nxtBtn.addEventListener("click", function () {
@@ -253,7 +221,6 @@ nxtBtn.addEventListener("click", function () {
   resetQuestion();
 });
 startBtn.addEventListener("click", beginQuiz);
-
 
 // playerScores.addEventListener("click", saveScore);
 // highscoreBtn.addEventListener("click", highscore);
