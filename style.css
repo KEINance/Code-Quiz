@@ -44,12 +44,16 @@ header {
     display: none;
 } */
 
-#scoringContainer {
+/* #scoringContainer {
+    display: none;
+} */
+
+.hide {
     display: none;
 }
 
 #questionsContainer {
-    display: none;
+    /* display: none; */
     text-align: center;
     font-size: large;
     font-weight: bold;

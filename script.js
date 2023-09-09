@@ -69,27 +69,27 @@ const secRemaining = 0;
 
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
-localStorage.setItem("playerScores", json.stringify(playerScores));
-function playerScores() {
-  localStorage.setItem("highScores", json.stringify(scores));
-}
 
-localStorage.setItem("playerInitials", json.stringify(playerInitial));
+function playerScores() {
+  localStorage.setItem("highScores", JSON.stringify(playerScores));
+};
 function playerInitial() {
-  localStorage.setItem("history", json.stringify(initial));
+  localStorage.setItem("history", JSON.stringify(playerInitial));
 }
 
 //start quiz
 function beginQuiz() {
+    console.log('start')
   openingContainer.classList.add("hide");
   questionsContainer.classList.remove("hide");
 
-  countDown();
   questions();
+  countDown();
 }
 
 // countdown
 function countDown() {
+    console.log('start2')
   timeInterval = setInterval(function () {
     timeLeft--;
     timer.innerHTML = timeLeft + "remaining until quiz ends!";
@@ -103,6 +103,7 @@ function countDown() {
 
 // penalty counter
 function penalty(time) {
+    console.log('start3')
   secRemaining -= time;
   if (secRemaining < 0) {
     secRemaining = 0;
@@ -111,7 +112,10 @@ function penalty(time) {
 
 //show questions
 function questions() {
-  if ((questionList = questions.length)) {
+    console.log('start4')
+    questionsContainer.classList.remove("hide");
+
+  if ((questionList = questions.length.answerList)) {
     clearInterval(timeInterval);
     playerScores();
     return;
@@ -122,6 +126,7 @@ function questions() {
 
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
+    console.log('start5')
   const answerChoice = e.target;
   const right = answerChoice.dataset.correct;
   answerChoice.classList.remove("hide");
@@ -130,26 +135,32 @@ function rightWrong() {
   } else {
     // wrong answers decreae time by 10 seconds
     answerChoice.innerHTML = "INCORRECT~";
-    if (timeRemaining <= 10) {
-      timeRemaining = 0;
+    if (timeLeft <= 10) {
+      timeLeft = 0;
     } else {
-      timeRemaining -= 10;
+      timeLeft -= 10;
     }
   }
 }
 
 //show next question
 function nextQuestionSelection(questions) {
+    console.log('start6')
   resetQuestion();
   questions();
 }
 
 //clear answered question
 function resetQuestion() {
+    console.log('start6')
   nxtBtn.classList.add("hide");
   while (answerList.firstChild) {
     answerList.removeChild(answerList.firstChild);
   }
+}
+
+function saveScore() {
+
 }
 
 // highscores and show highscores
@@ -178,8 +189,9 @@ function resetQuestion() {
 
 //start button, highscores, add score
 nxtBtn.addEventListener("click", function () {
+    console.log('nextbtn')
   nextQuestionSelection();
 });
-startBtn.addEventListener("click", startQuiz);
-playerScores.addEventListener("click", saveScore);
-highscoreBtn.addEventListener("click", highscore);
+startBtn.addEventListener("click", beginQuiz);
+// playerScores.addEventListener("click", saveScore);
+// highscoreBtn.addEventListener("click", highscore);
