@@ -62,30 +62,21 @@ const nxtBtn = document.getElementById("nxtBtn");
 const answerList = document.getElementById("answerList");
 const goBack = document.getElementById("goBack");
 const clearHighScores = document.getElementById("clearHighScores");
-var listHighScores = document.getElementById("listHighScores");
+var listHighScores = document.getElementById("listHighScores"); //list items from local
+const showScores = document.getElementById("showScores"); // shows highscores onclickbtn to move to next page
 const submitBtn = document.getElementById("submitBtn");
 var secRemaining = 0;
 var currentQuestion = 0;
 var submitAnswerBtn = document.getElementById("submitAnswerBtn");
 var selectedChoice = null;
 
-// const playerScores = json.parse(localStorage.getItem("playerScores"));
-// localstorage
-
 function selectedAnswer(choiceIndex) {
-    selectedChoice = choiceIndex
-}
-
-function playerScores() {
-  localStorage.setItem("highScores", JSON.stringify(playerScores));
-}
-function playerInitial() {
-  localStorage.setItem("history", JSON.stringify(playerInitial));
+  selectedChoice = choiceIndex;
 }
 
 //start quiz
 function beginQuiz() {
-  // console.log('start')
+  console.log("start");
   openingContainer.classList.add("hide");
   questionsContainer.classList.remove("hide");
 
@@ -118,15 +109,15 @@ function penalty(time) {
 
 //clear answered question
 function resetQuestion() {
-    console.log("show question and answer");
-    nxtBtn.classList.add("hide");
-    submitAnswerBtn.classList.remove("hide");
-    document.querySelector("#answerList").innerHTML = "";
-    
-    for (let i = 0; i < questionList[currentQuestion].length; i++) {
-        let newQuestion = document.createElement("div");
-        newQuestion.textContent = questionList[currentQuestion].question[i].text;
-        // currentQuestion++;
+  console.log("show question and answer");
+  nxtBtn.classList.add("hide");
+  submitAnswerBtn.classList.remove("hide");
+  document.querySelector("#answerList").innerHTML = "";
+
+  for (let i = 0; i < questionList[currentQuestion].length; i++) {
+    let newQuestion = document.createElement("div");
+    newQuestion.textContent = questionList[currentQuestion].question[i].text;
+    // currentQuestion++;
 
     document.getElementById("answerList").appendChild(newQuestion);
   }
@@ -136,13 +127,13 @@ function resetQuestion() {
     //choices arr attached to current question
     let newLine = document.createElement("button");
     newLine.textContent = questionList[currentQuestion].choices[i].text;
-    
+
     // then append created element to container
     //loop that question choices array and append each one to a
     //new line w/in cleared container
-    newLine.addEventListener('click', function() {
-        selectedAnswer(i);
-    })
+    newLine.addEventListener("click", function () {
+      selectedAnswer(i);
+    });
 
     document.getElementById("answerList").appendChild(newLine);
   }
@@ -169,58 +160,70 @@ function rightWrong() {
     } else {
       timeLeft -= 10;
     }
-}
-    currentQuestion++;
+  }
+  currentQuestion++;
 
-if (currentQuestion === questionList.length) {
+  if (currentQuestion === questionList.length) {
     clearInterval(timeInterval);
     saveScore();
-}
-answerList.appendChild(nxtBtn);
-nxtBtn.addEventListener("click", resetQuestion);
+  }
+  answerList.appendChild(nxtBtn);
+  nxtBtn.addEventListener("click", resetQuestion);
 }
 
+//save score with initials
 function saveScore() {
   console.log("save score");
+  scoringContainer.classList.remove("hide");
+  questionsContainer.classList.add("hide");
+  answerList.classList.add("hide");
+  nxtBtn.classList.add("hide");
+  submitBtn.classList.remove("hide");
 
+  //enter initials
+  var initialsSaved = document.getElementById("buttonInitials");
+  localStorage.setItem("initials", initialsSaved.value);
 
-
-
-  
+  //have submit button -- takes to show highscores
+  submitBtn.addEventListener("click", showHighScores);
 }
 
-// highscores and show highscores
-// on event click to hide and unhide for showing schores
+// localstorage
+function playerScores() {
+  localStorage.setItem("highScores", JSON.stringify(playerScores));
+}
+function playerInitial() {
+  localStorage.setItem("history", JSON.stringify(playerInitial));
+}
 
-// const highScores() {
-//console.log('show high scores')
-//     const highScore = localStorage.getItem('score');
-//     const scoreData = json.parse(highScore);
-//     const scorebyInitial =  scoreData.initial;
-//
+//show highscores and initials have go back button
+function showHighScores() {
+  scoringContainer.classList.add("hide");
+  highscoresContainer.classList.remove("hide");
+  listHighScores.classList.remove("hide");
+  goBack.classList.remove("hide");
+  clearHighScores.classList.remove("hide");
+  showScores.classList.remove("hide");
+  scoringContainer.innerHTML = "";
+  
+    const initials = localStorage.getItem(playerInitial);
+  const playerInitial = json.parse(localStorage.getItem("playerInitial"));
+  
+  
+  var userInitials = JSON.parse(localStorage.getItem('initals'));
+  listScores = document.getElementById('listHighScores');
+  for (i = 0; i < 100; i++) {
+      list[i].innerHTML = `<li>${userInitials}</li>`; 
+    }
+}
 
-//add initials in js if easier
+    //   const scorebyInitial = initials;
+    //   const playerScore = scoreData;
+    
+    //   scores.innerHTML = scorebyInitial + playerScore;
 
-//     const playerScore = scoreData.score;
-
-//     scores.innerHTML = '';
-//     scores.innerHTML = scorebyInitial + playerScore;
-// };
-
-// function ShowHighScores() {
-
-//     const highScores = json.parse(localStorage.getItem('highscores'));
-//     const listOfHighScores = listHighScores.setAttribute('')
-// }
-
-//clear screen
-
-//start button, highscores, add score
-nxtBtn.addEventListener("click", function () {
-  console.log("nextbtn");
-  resetQuestion();
-});
 startBtn.addEventListener("click", beginQuiz);
-
-// playerScores.addEventListener("click", saveScore);
-// highscoreBtn.addEventListener("click", highscore);
+// goBack.addEventListener("click", beginQuiz);
+// clearHighScores.addEventListener("click");
+// startBtn.addEventListener("click", document.getElementById("openingContainer"));
+// playerScores.addEventListener("click", saveScore)
