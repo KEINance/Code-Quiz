@@ -181,7 +181,6 @@ function saveScore() {
   answerList.classList.add("hide");
   nxtBtn.classList.add("hide");
   submitBtn.classList.remove("hide");
-
   //have submit button -- takes to show highscores
   submitBtn.addEventListener("click", showHighScores);
 }
