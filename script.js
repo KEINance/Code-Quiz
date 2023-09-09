@@ -66,6 +66,7 @@ var listHighScores = document.getElementById("listHighScores");
 const submitBtn = document.getElementById("submitBtn");
 var secRemaining = 0;
 var currentQuestion = 0;
+var submitAnswerBtn = document.getElementById('submitAnswerBtn')
 // const playerScores = json.parse(localStorage.getItem("playerScores"));
 // localstorage
 
@@ -113,21 +114,22 @@ function penalty(time) {
 function resetQuestion() {
   console.log("start7");
   nxtBtn.classList.add("hide");
-  document.querySelector("#questionContainer").innerHTML('');
+  submitAnswerBtn.classList.remove("hide");
+  document.querySelector("#answerList").innerHTML = '';
 
   for (let i = 0; i < questionList[currentQuestion].choices; i++) {
     //new element document.createElement attach txt through tageting  
     //choices arr attached to current question
-    document.createElement(currentQuestion).e.target(currentQuestion[choices]);
+    let newLine = document.createElement('div');
     newLine.textContent = questionList[currentQuestion].choices[i];
     // then append created element to container
-    append(newLine.textContent).getElementById('answerList');
+    //loop that question choices array and append each one to a
+    //new line w/in cleared container
+    document.getElementById('answerList').appendChild(newLine);
   }
-  //loop that question choices array and append each one to a
-  //new line w/in cleared container
 
   //submit button will show rightWrong()
-  submitBtn.addEventListener("click", rightWrong);
+  submitAnswerBtn.addEventListener("click", rightWrong);
 }
 
 //show right answer 'correct' or 'wrong' statement
@@ -135,8 +137,8 @@ function rightWrong() {
   console.log("start5");
   questionsContainer.classList.remove("hide");
 
-  // const answerChoice = answerList.length;
-  // const right = answerChoice;
+  const answerChoice = answerList.length;
+  const right = answerChoice;
   // answerList.classList.remove("hide");
   // // var questionArr = questionList.splice[0];
   // var listOfQuestions = (document.createElement('answerList'));
@@ -161,6 +163,7 @@ function rightWrong() {
   }
 
   //coming from reset will then trigger resetQuestion()
+  resetQuestion();
 }
 
 //show next question
@@ -222,11 +225,19 @@ function saveScore() {}
 
 //clear screen
 
+
+
+
+
+
+
 //start button, highscores, add score
 nxtBtn.addEventListener("click", function () {
   console.log("nextbtn");
-  nextQuestionSelection();
+  resetQuestion();
 });
 startBtn.addEventListener("click", beginQuiz);
+
+
 // playerScores.addEventListener("click", saveScore);
 // highscoreBtn.addEventListener("click", highscore);
