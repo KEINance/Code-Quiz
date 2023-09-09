@@ -164,6 +164,7 @@ function rightWrong() {
   currentQuestion++;
 
   if (currentQuestion === questionList.length) {
+    nxtBtn.addEventListener("click", resetQuestion);
     clearInterval(timeInterval);
     saveScore();
   }
@@ -179,11 +180,6 @@ function saveScore() {
   answerList.classList.add("hide");
   nxtBtn.classList.add("hide");
   submitBtn.classList.remove("hide");
-
-  //enter initials
-  var initialsSaved = document.getElementById("buttonInitials");
-  localStorage.setItem("initials", initialsSaved.value);
-
   //have submit button -- takes to show highscores
   submitBtn.addEventListener("click", showHighScores);
 }
@@ -198,29 +194,35 @@ function playerInitial() {
 
 //show highscores and initials have go back button
 function showHighScores() {
+  var initialsSaved = document.getElementById("buttonInitials");
+  localStorage.setItem("initials", initialsSaved.value);
+
+  var timeSaved = document.getElementById('timer')
+
   scoringContainer.classList.add("hide");
   highscoresContainer.classList.remove("hide");
   listHighScores.classList.remove("hide");
   goBack.classList.remove("hide");
   clearHighScores.classList.remove("hide");
   showScores.classList.remove("hide");
+  //enter initials
+
   scoringContainer.innerHTML = "";
-  
-    const initials = localStorage.getItem(playerInitial);
+
+  const initials = localStorage.getItem(playerInitial);
   const playerInitial = json.parse(localStorage.getItem("playerInitial"));
-  
-  
-  var userInitials = JSON.parse(localStorage.getItem('initals'));
-  listScores = document.getElementById('listHighScores');
+
+  var userInitials = JSON.parse(localStorage.getItem("initals"));
+  listScores = document.getElementById("listHighScores");
   for (i = 0; i < 100; i++) {
-      list[i].innerHTML = `<li>${userInitials}</li>`; 
-    }
+    list[i].innerHTML = `<li>${userInitials}</li>`;
+  }
 }
 
-    //   const scorebyInitial = initials;
-    //   const playerScore = scoreData;
-    
-    //   scores.innerHTML = scorebyInitial + playerScore;
+//   const scorebyInitial = initials;
+//   const playerScore = scoreData;
+
+//   scores.innerHTML = scorebyInitial + playerScore;
 
 startBtn.addEventListener("click", beginQuiz);
 // goBack.addEventListener("click", beginQuiz);
