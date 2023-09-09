@@ -119,11 +119,20 @@ function resetQuestion() {
   submitAnswerBtn.classList.remove("hide");
   document.querySelector("#answerList").innerHTML = '';
 
+
+  for (let i = 0; i < questionList[currentQuestion].question.length; i++) {
+    let newQuestion = document.createElement('div');
+    newQuestion.textContent = questionList[currentQuestion].question[i].text;
+
+    document.getElementById('answerList').appendChild(newQuestion);
+    
+  }
+
   for (let i = 0; i < questionList[currentQuestion].choices.length; i++) {
     //new element document.createElement attach txt through tageting  
     //choices arr attached to current question
     let newQuestion = document.createElement('div');
-    newQuestion.textContent = questionList[currentQuestion].question[0].text;
+    newQuestion.textContent = questionList[currentQuestion].question[i].text;
     let newLine = document.createElement('button');
     newLine.textContent = questionList[currentQuestion].choices[0].text;
     // then append created element to container
