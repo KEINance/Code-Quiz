@@ -21,11 +21,8 @@ header {
     color: purple;
 }
 
-/* #topItems {
-} */
-
 .top-items {
-    width: 100%;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -44,20 +41,11 @@ header {
     text-align: right;
 }
 
-/* #openingContainer {
-    display: none;
-} */
-
-/* #scoringContainer {
-    display: none;
-} */
-
 .hide {
     display: none;
 }
 
 #questionsContainer {
-    /* display: none; */
     text-align: center;
     font-size: large;
     font-weight: bold;
@@ -75,14 +63,6 @@ button {
     border-radius: 8px;
 }
 
-.btnHide {
-    /* display: none; */
-    background: purple;
-    color: whitesmoke;
-    border-radius: 8px;
-}
-
-
 /* color change when hover over button */
 button:hover {
     cursor: grab;
@@ -91,7 +71,6 @@ button:hover {
 
 /* initials list hightlight purple */
 #initials {
-    /* display: none; */
     color: black;
     background-color: purple;
 }

@@ -109,44 +109,56 @@ function penalty(time) {
   }
 }
 
+
+
+
+
+
+
 //show right answer 'correct' or 'wrong' statement
 function rightWrong() {
-  console.log("start5");
-  questionsContainer.classList.remove("hide");
-  // var questions = 0;
-  for (var i = 0; i < questionList; i++) {
-    var random = Math.floor(Math.random() * quiz.length);
-    var randomQuestion =
-      questionList[random].enabled == false || questionList[random].asked == 1;
+    console.log("start5");
+    questionsContainer.classList.remove("hide")
 
-    // Ask question
-    var question = questionList[randomQuestion];
-    document.getElementById("answerList").innerHTML +=
-      "<p>" + question + "</p>";
-  }
-  if (question === answerList.length) {
-    clearInterval(timeInterval);
-    playerScores();
-    return;
-  }
-  
-  const answerChoice = answerList.length;
-  const right = answerChoice.true;
-  answerChoice.classList.remove("hide");
-  if (right) {
-      answerChoice.innerHTML = "CORRECT!";
+    const answerChoice = answerList.length;
+    const right = answerChoice;
+    answerList.classList.remove("hide");
+    // var questionArr = questionList.splice[0];
+    var listOfQuestions = (document.createElement('answerList'));
+    document.body.appendChild(listOfQuestions).JSON;
+    
+
+    if (right) {
+        questionList.answerChoice.innerHTML = "CORRECT!";
     } else {
         // wrong answers decreae time by 10 seconds
-        answerChoice.innerHTML = "INCORRECT~";
+        questionList.answerChoice.innerHTML = "INCORRECT~";
         if (timeLeft <= 10) {
             timeLeft = 0;
         } else {
             timeLeft -= 10;
         }
+        answerList.appendChild(nxtBtn);
+        nxtBtn.addEventListener("click", rightWrong);
     }
-    nxtBtn.addEventListener("click", rightWrong);
-    answerList.appendChild(nxtBtn);
+    if (questionList === answerList.length) {
+      clearInterval(timeInterval);
+      playerScores();
+    }
+    // resetQuestion();
+    // nextQuestionSelection();
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //show next question
 function nextQuestionSelection(rightWrong) {
