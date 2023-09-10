@@ -217,5 +217,5 @@ highScoresBtn.addEventListener('click', () => {
   scoringContainer.classList.add('hide');
   highscoresContainer.classList.remove("hide");
   listHighScores.classList.remove('hide');
-  showHighScores()
+  showHighScores();
 })
