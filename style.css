@@ -55,6 +55,15 @@ header {
     text-align: center;
 }
 
+#answerList {
+    margin-top: 100px;
+}
+
+#questionPrompt {
+    color: purple;
+}
+
+
 /* buttons purple, white text */
 button {
     text-align: center;

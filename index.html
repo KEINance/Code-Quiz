@@ -39,7 +39,10 @@
 <section id="questionsContainer" class="hide">
     <!-- question and answer portion -->
     <header style="text-align: justify;"><h1 class="header-name">Code Quiz Challenge</h1></header>
-    <div> 
+
+        <div id="questionPrompt">
+                <!-- questions show up here -->
+        </div>
         <div id="answerList" class="answerList" style="text-align: center;">
             <!-- shows questions and answer choices -->
         </div>
@@ -47,8 +50,6 @@
             <button id="submitAnswerBtn" class="hide">Submit Answer</button>
             <button id="nxtBtn" class="hide">NEXT</button>
         </div>
-
-    </div>
 </section>
 
 
@@ -69,9 +70,9 @@
 
 <section id="highscoresContainer" class="hide">
     <!--shows highscores also go back and clear highscores buttons -->
-    <div id="listHighScores">
+    <ul id="listHighScores">
             <!-- high scores go here -->
-    </div>
+    </ul>
     <div id="scoresBtns" class="hide">
         <button id="goBack">Go Back</button>
         <button id="clearHighscores">Clear HighScores</button>
