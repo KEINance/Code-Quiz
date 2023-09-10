@@ -1,8 +1,7 @@
 /* leave background white */
 html {
+    width: 100%;
     background: white;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 /* questions and headers large and bold */
@@ -22,7 +21,7 @@ header {
 }
 
 .top-items {
-
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -45,24 +44,74 @@ header {
     display: none;
 }
 
+#listHighScores {
+    margin-left: 700px;
+    text-decoration: overline;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 20px;
+    color: purple;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 #questionsContainer {
-    text-align: center;
     font-size: large;
     font-weight: bold;
+}
+
+.header-name{
+    margin-left: 640px;
+    margin-top: 30px;
 }
 
 .startBtn {
     text-align: center;
 }
-
+#questionPrompt {
+    margin-left: 600px;
+    margin-top: 30px;
+    color: purple;
+}
 #answerList {
-    margin-top: 100px;
+    margin-left: 680px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+#submitAnswerBtn {
+    align-text: center;
+    margin-left: 725px;
+    width: 100px;
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+#nxtBtn {
+    margin-left: 70px;
+    width: 50px;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.completed {
+    margin-left: 600px;
+    margin-top: 50px;
 }
 
 #questionPrompt {
     color: purple;
 }
 
+#scoresBtns {
+    margin-left: 690px;
+}
 
 /* buttons purple, white text */
 button {

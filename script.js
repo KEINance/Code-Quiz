@@ -83,6 +83,7 @@ function beginQuiz() {
   questionsContainer.classList.remove("hide");
   countDown();
   resetQuestion();
+  highScoresBtn();
 }
 // countdown
 function countDown() {
@@ -194,18 +195,6 @@ function showHighScores() {
   }
 }
 
-function highScoreBtn () {
-  highScoresBtn.addEventListener('click', () => {
-    openingContainer.classList.add("hide");
-    questionsContainer.classList.add('hide');
-    scoringContainer.classList.add('hide');
-    highscoresContainer.classList.remove("hide");
-    scoresBtns.classList.remove('hide');
-    highScoresList.classList.remove('hide')
-    listHighScores.classList.remove('hide');
-    showHighScores()
-  })
-}
 
 function clearHighScore() {
         scoringContainer.classList.add("hide");
@@ -222,3 +211,11 @@ startBtn.addEventListener("click", beginQuiz);
 goBack.addEventListener("click", function(){
     location.reload();  // This will refresh the page
 });
+highScoresBtn.addEventListener('click', () => {
+  scoringContainer.classList.add('hide');
+  questionsContainer.classList.add("hide");
+  scoringContainer.classList.add('hide');
+  highscoresContainer.classList.remove("hide");
+  listHighScores.classList.remove('hide');
+  showHighScores()
+})
