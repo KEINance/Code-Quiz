@@ -83,7 +83,6 @@ function beginQuiz() {
   questionsContainer.classList.remove("hide");
   countDown();
   resetQuestion();
-  highScoresBtn();
 }
 // countdown
 function countDown() {
@@ -167,8 +166,7 @@ function showHighScores() {
   var initialsSaved = document.getElementById("buttonInitials");
 
   // console.log(initialsSaved.value, timeLeft)
-  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-
+  var highscores = (window.localStorage.getItem("highscores")) || [];
   var newScore = {
     score: timeLeft,
     initials: initialsSaved.value,
