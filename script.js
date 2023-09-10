@@ -69,8 +69,7 @@ var secRemaining = 0;
 var currentQuestion = 0;
 var submitAnswerBtn = document.getElementById("submitAnswerBtn");
 var selectedChoice = null;
-var questionPrompt = document.getElementById('questionPrompt');
-var clearHTML = document.getElementById('clearHTML');
+var questionPrompt = document.getElementById("questionPrompt");
 
 function selectedAnswer(choiceIndex) {
   selectedChoice = choiceIndex;
@@ -105,16 +104,16 @@ function penalty(time) {
 }
 //clear answered question
 function resetQuestion() {
-//   console.log("show question and answer");
+  //   console.log("show question and answer");
   nxtBtn.classList.add("hide");
   submitAnswerBtn.classList.remove("hide");
   document.querySelector("#answerList").innerHTML = "";
-  for (let i = 0; i < questionList[currentQuestion].question.length; i++) {
-      let newQuestion = document.createElement("div");
-      newQuestion.textContent = questionList[currentQuestion].question[i].text;
-      document.getElementById("questionPrompt").appendChild(newQuestion);
-      console.log('why no questions')
-  }
+  document.querySelector("#questionPrompt").innerHTML = "";
+
+  let newQuestion = document.createElement("div");
+  newQuestion.textContent = questionList[currentQuestion].question;
+  document.getElementById("questionPrompt").appendChild(newQuestion);
+
   for (let i = 0; i < questionList[currentQuestion].choices.length; i++) {
     //new element document.createElement attach txt through tageting
     //choices arr attached to current question
@@ -196,12 +195,24 @@ function showHighScores() {
   for (i = 0; i < highscores.length; i += 1) {
     var listItem = document.createElement("li");
     listItem.textContent =
-      highscores[i].initialsSaved + " - " + highscores[i].timeLeft;
+      highscores[i].initials + " - " + highscores[i].score;
     listScores = document.getElementById("listHighScores");
     listScores.appendChild(listItem);
   }
-  // clearHighScores.addEventListener('click', localStorage.clear());
+}
+
+function clearHighScore() {
+        scoringContainer.classList.add("hide");
+        highscoresContainer.classList.remove("hide");
+        listHighScores.classList.remove("hide");
+        scoresBtns.classList.remove("hide");
+    
+    window.localStorage.removeItem('highscores')
+    clearHighScores.addEventListener('click', clearHighScores);
 }
 
 startBtn.addEventListener("click", beginQuiz);
-// goBack.addEventListener("click", openingContainer);
+goBack.addEventListener("click", function(){
+    highscoresContainer.classList.add('hide');
+    openingContainer.classList.remove('hide')
+});
