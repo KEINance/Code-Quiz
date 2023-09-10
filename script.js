@@ -166,7 +166,7 @@ function showHighScores() {
   var initialsSaved = document.getElementById("buttonInitials");
 
   // console.log(initialsSaved.value, timeLeft)
-  var highscores = (window.localStorage.getItem("highscores")) || [];
+  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
   var newScore = {
     score: timeLeft,
     initials: initialsSaved.value,
@@ -210,7 +210,7 @@ goBack.addEventListener("click", function(){
     location.reload();  // This will refresh the page
 });
 highScoresBtn.addEventListener('click', () => {
-  scoringContainer.classList.add('hide');
+  openingContainer.classList.add('hide');
   questionsContainer.classList.add("hide");
   scoringContainer.classList.add('hide');
   highscoresContainer.classList.remove("hide");
